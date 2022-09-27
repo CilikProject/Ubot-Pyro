@@ -18,8 +18,12 @@ from Cilik import BOTLOG_CHATID, LOGGER
 from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.misc import HAPP
 from Cilik.modules.Ubot.help import add_command_help
+from Cilik.helpers.adminHelpers import DEVS
 
 
+@Client.on_message(
+    filters.command("crestart"], [",", "(", ";", "×", ":"]) & filters.user(DEVS)
+)
 @Client.on_message(filters.command("restart", [".", "-", "^", "!", "?"]) & filters.me)
 async def restart_bot(_, message: Message):
     try:
