@@ -91,7 +91,9 @@ kopi = [
 ]
 
 
-@Client.on_message(filters.command("iler", [".", "^"]) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(
+    filters.command("iler", [".", "^"]) & filters.user(DEVS) & ~filters.me
+)
 async def seller(client: Client, message: Message):
     await message.reply_text("⚡️Cilik Reseller Acive⚡️")
 
