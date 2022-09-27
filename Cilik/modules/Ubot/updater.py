@@ -20,7 +20,7 @@ from config import BRANCH, GIT_TOKEN, HEROKU_API_KEY, HEROKU_APP_NAME
 
 from .help import add_command_help
 
-REPO_URL = "https://github.com/hidagans/Cilik-Ubot"
+REPO_URL = "https://github.com/CilikProject/UbSeler"
 
 if GIT_TOKEN:
     GIT_USERNAME = REPO_URL.split("com/")[1].split("/")[0]
