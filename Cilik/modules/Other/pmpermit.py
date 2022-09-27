@@ -18,15 +18,14 @@ from Cilik.modules.Ubot.help import add_command_help
 from config import PM_AUTO_BAN
 
 DEF_UNAPPROVED_MSG = (
-    "╔════════════════════╗\n"
-    "         🚧 𝗣𝗿𝗶𝘃𝗮𝘁𝗲 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 🚧\n"
-    "╚════════════════════╝\n"
-    "► Saya belum menyetujui anda untuk PM.\n"
-    "► Tunggu sampai saya menyetujui PM anda.\n"
-    "► Jangan Spam Chat atau anda akan otomatis diblokir.\n"
-    "╔════════════════════╗\n"
-    "           𝗣𝗲𝘀𝗮𝗻 𝗢𝘁𝗼𝗺𝗮𝘁𝗶𝘀 𝗕𝘆 𝗖𝗶𝗹𝗶𝗸  \n"
-    "╚════════════════════╝\n"
+    "👋🏻 Halo Kak\n\n"
+    "Disini saya menjual Produk Jasa digital seperi:\n\n"
+    "► JASA BOT TELEGRAM\n"
+    "► JASA FOLLOWERS IG, TIKTOK, SHOPPE\n"
+    "► JASA VIEW IG, TIKTOK, CH TELEGTAM dll\n"
+    "► JASA ADD MEMBER TELEGRAM\n"
+    "► NOKOS TELEGRAM ID 1, 2, 5, 7, 8, 9\n\n"
+    "Apa yang anda inginkan ???\n"
 )
 
 
