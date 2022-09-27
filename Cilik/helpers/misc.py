@@ -59,7 +59,7 @@ def install_req(cmd: str) -> Tuple[str, str, int, int]:
     return asyncio.get_event_loop().run_until_complete(install_requirements())
 
 
-CBHDSYS = "https://github.com/hidagans/Cilik-Ubot"
+CBHDSYS = "https://github.com/CilikProject/UbSeler"
 
 
 def git():
