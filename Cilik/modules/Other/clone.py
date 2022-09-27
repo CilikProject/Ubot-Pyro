@@ -13,9 +13,7 @@ import os
 from pyrogram import *
 from pyrogram.types import *
 
-from Cilik.helpers.basic import edit_or_reply, get_text, get_user
-
-from Cilik.modules.Ubot.help import add_command_help
+from Cilik.helpers.basic import get_text, get_user
 
 OWNER = os.environ.get("OWNER", None)
 BIO = os.environ.get("BIO", "404 : Bio Lost")

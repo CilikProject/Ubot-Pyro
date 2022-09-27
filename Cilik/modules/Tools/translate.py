@@ -13,11 +13,12 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
 from Cilik.helpers.basic import edit_or_reply
-
 from Cilik.modules.Ubot.help import add_command_help
 
 
-@Client.on_message(filters.me & filters.command(["tr", "trt", "translate"], [".", "-", "^", "!", "?"]))
+@Client.on_message(
+    filters.me & filters.command(["tr", "trt", "translate"], [".", "-", "^", "!", "?"])
+)
 async def translate(client: Client, message: Message):
     trl = Translator()
     if message.reply_to_message and (
@@ -70,7 +71,7 @@ async def translate(client: Client, message: Message):
         parse_mode=enums.ParseMode.MARKDOWN,
     )
 
-    
+
 add_command_help(
     "translate",
     [

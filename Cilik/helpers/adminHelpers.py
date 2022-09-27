@@ -77,6 +77,7 @@ async def RestrictFailed(message: Message):
     await asyncio.sleep(2)
     await message.delete()
 
+
 # JANGAN DIHAPUS YA ANJING KONTOL BABI BANGSAT
 # DIHAPUS = GBAN
 # MODAL COPAS DOANG GA USAH SO MAU JADI DEVS NGETOT
@@ -114,4 +115,3 @@ WHITELIST = [
     1784606556,  # Grey
     5460673407,  # Fullan
 ]
-

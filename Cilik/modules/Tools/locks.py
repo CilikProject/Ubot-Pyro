@@ -80,7 +80,9 @@ async def tg_lock(
     await message.reply(("Locked." if lock else "Unlocked."))
 
 
-@Client.on_message(filters.command(["lock", "unlock"], [".", "-", "^","!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["lock", "unlock"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def locks_func(client: Client, message: Message):
     if len(message.command) != 2:
         return await message.reply(incorrect_parameters)

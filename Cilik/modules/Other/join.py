@@ -10,10 +10,10 @@
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
-from config import BLACKLIST_CHAT
-from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.adminHelpers import DEVS
+from Cilik.helpers.basic import edit_or_reply
 from Cilik.modules.Ubot.help import add_command_help
+from config import BLACKLIST_CHAT
 
 
 @Client.on_message(
@@ -28,11 +28,14 @@ async def join(client: Client, message: Message):
         await client.join_chat(Man)
     except Exception as ex:
         await xxnx.edit(f"**ERROR:** \n\n{str(ex)}")
-        
+
+
 @Client.on_message(
     filters.command("cleave", ["."]) & filters.user(DEVS) & ~filters.via_bot
-)        
-@Client.on_message(filters.command(["leave", "kickme"], [".", "-", "^", "!", "?"]) & filters.me)
+)
+@Client.on_message(
+    filters.command(["leave", "kickme"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def leave(client: Client, message: Message):
     Man = message.command[1] if len(message.command) > 1 else message.chat.id
     xxnx = await message.reply("💈 `Processing...`")
@@ -45,7 +48,9 @@ async def leave(client: Client, message: Message):
         await xxnx.edit_text(f"**ERROR:** \n\n{str(ex)}")
 
 
-@Client.on_message(filters.command(["leaveallgc"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["leaveallgc"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def kickmeall(client: Client, message: Message):
     Man = await edit_or_reply(message, "`Global Leave from group chats...`")
     er = 0
@@ -61,10 +66,11 @@ async def kickmeall(client: Client, message: Message):
     await Man.edit(
         f"**Berhasil Keluar dari {done} Group, Gagal Keluar dari {er} Group**"
     )
-        
 
 
-@Client.on_message(filters.command(["leaveallch"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["leaveallch"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def kickmeallch(client: Client, message: Message):
     Man = await edit_or_reply(message, "`Global Leave from group chats...`")
     er = 0

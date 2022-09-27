@@ -20,7 +20,6 @@ from pyrogram.types import Message
 
 from Cilik.helpers.basic import edit_or_reply, get_text
 from Cilik.helpers.constants import MEMES
-
 from Cilik.modules.Ubot.help import *
 
 DEFAULTUSER = "Man"
@@ -116,30 +115,31 @@ async def love(client: Client, message: Message):
     animation_interval = 1
     animation_ttl = range(0, 14)
     await message.edit("🧡💚❤️💙💛🖤💜💝💘💝")
-    animation_chars = [          
-              "❤️🧡💛💚💙💜🖤💕💞💓",
-              "🧡💚❤️💙💛🖤💜💝💘💝",
-              "❤️🧡💛💚💙💜🖤💕💞💓",
-              "💝💘💝💗💓💞💕🧡💚❤️",
-              "❤️🧡💛💚💙💜🖤💕💞💓",
-              "🧡💚❤️💙💛🖤💘💝💗💓",
-              "💚❤️💙💛💞💓💗💚💙💜",
-              "❤️🧡💛💚💙💜🖤💕💞💓",
-              "🖤💕💞💓💘💝🧡💚❤️💙",
-              "💕🧡💚❤💙💜🖤💕💞💝",
-              "🧡💚❤️🖤💕💞💓💗🧡💚",
-              "🧡💚❤💛🖤💕💞💓🧡💚",
-              "💖💘❤️💙💛💗💓🧡🖤💜",
-              "🧡💛💚💙💜🖤💕💓💗💖",
-          ]
+    animation_chars = [
+        "❤️🧡💛💚💙💜🖤💕💞💓",
+        "🧡💚❤️💙💛🖤💜💝💘💝",
+        "❤️🧡💛💚💙💜🖤💕💞💓",
+        "💝💘💝💗💓💞💕🧡💚❤️",
+        "❤️🧡💛💚💙💜🖤💕💞💓",
+        "🧡💚❤️💙💛🖤💘💝💗💓",
+        "💚❤️💙💛💞💓💗💚💙💜",
+        "❤️🧡💛💚💙💜🖤💕💞💓",
+        "🖤💕💞💓💘💝🧡💚❤️💙",
+        "💕🧡💚❤💙💜🖤💕💞💝",
+        "🧡💚❤️🖤💕💞💓💗🧡💚",
+        "🧡💚❤💛🖤💕💞💓🧡💚",
+        "💖💘❤️💙💛💗💓🧡🖤💜",
+        "🧡💛💚💙💜🖤💕💓💗💖",
+    ]
     for i in animation_ttl:
-        	
-            await asyncio.sleep(animation_interval)
-            await message.edit(animation_chars[i %14 ])
+
+        await asyncio.sleep(animation_interval)
+        await message.edit(animation_chars[i % 14])
 
 
 @Client.on_message(
-    filters.me & (filters.command(["loveyou"], [".", "-", "^", "!"]) | filters.regex("^loveyou "))
+    filters.me
+    & (filters.command(["loveyou"], [".", "-", "^", "!"]) | filters.regex("^loveyou "))
 )
 async def _(client: Client, message: Message):
     noble = random.randint(1, len(NOBLE) - 2)
@@ -198,7 +198,8 @@ async def hello_world(client: Client, message: Message):
 
 
 @Client.on_message(
-    filters.me & (filters.command(["ahh"], [".", "-", "^", "!"]) | filters.regex("^ahh "))
+    filters.me
+    & (filters.command(["ahh"], [".", "-", "^", "!"]) | filters.regex("^ahh "))
 )
 async def hello_world(client: Client, message: Message):
     mg = await edit_or_reply(message, "ahh")
@@ -405,7 +406,9 @@ async def okihakga(client: Client, message: Message):
         await message.edit(animation_chars[i % 15])
 
 
-@Client.on_message(filters.command(["gangsta", "gang", "gangstar"], [".", "-", "^", "!"]) & filters.me)
+@Client.on_message(
+    filters.command(["gangsta", "gang", "gangstar"], [".", "-", "^", "!"]) & filters.me
+)
 async def gajjajay(client: Client, message: Message):
     await message.edit("EVERyBOdy")
     await asyncio.sleep(0.3)
@@ -536,7 +539,9 @@ async def hak(client: Client, message: Message):
     )
 
 
-@Client.on_message(filters.command(["kontol", "kntl"], [".", "-", "^", "!"]) & filters.me)
+@Client.on_message(
+    filters.command(["kontol", "kntl"], [".", "-", "^", "!"]) & filters.me
+)
 async def kontol(client: Client, message: Message):
     emoji = get_text(message)
     kontol = MEMES.GAMBAR_KONTOL
@@ -545,7 +550,9 @@ async def kontol(client: Client, message: Message):
     await message.edit(kontol)
 
 
-@Client.on_message(filters.command(["penis", "dick"], [".", "-", "^", "!"]) & filters.me)
+@Client.on_message(
+    filters.command(["penis", "dick"], [".", "-", "^", "!"]) & filters.me
+)
 async def titid(client: Client, message: Message):
     emoji = get_text(message)
     titid = MEMES.GAMBAR_TITIT
@@ -611,7 +618,9 @@ async def adadino(client: Client, message: Message):
     await typew.edit("`-TAMAT-`")
 
 
-@Client.on_message(filters.command(["sayang", "syg"], [".", "-", "^", "!"]) & filters.me)
+@Client.on_message(
+    filters.command(["sayang", "syg"], [".", "-", "^", "!"]) & filters.me
+)
 async def zeyenk(client: Client, message: Message):
     e = await edit_or_reply(message, "I LOVEE YOUUU 💕")
     await e.edit("💝💘💓💗")
@@ -842,7 +851,9 @@ async def menggabut(client: Client, message: Message):
     await e.edit("`GABUT`")
 
 
-@Client.on_message(filters.command(["helikopter", "heli"], [".", "-", "^", "!"]) & filters.me)
+@Client.on_message(
+    filters.command(["helikopter", "heli"], [".", "-", "^", "!"]) & filters.me
+)
 async def helikopter(client: Client, message: Message):
     await edit_or_reply(
         message,
@@ -894,7 +905,9 @@ async def ngebundir(client: Client, message: Message):
     )
 
 
-@Client.on_message(filters.command(["awk", "awikwok"], [".", "-", "^", "!"]) & filters.me)
+@Client.on_message(
+    filters.command(["awk", "awikwok"], [".", "-", "^", "!"]) & filters.me
+)
 async def awikwok(client: Client, message: Message):
     await edit_or_reply(
         message,

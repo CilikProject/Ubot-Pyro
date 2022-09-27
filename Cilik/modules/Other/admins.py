@@ -15,7 +15,6 @@ from pyrogram.errors import ChatAdminRequired
 from pyrogram.types import ChatPermissions, ChatPrivileges, Message
 
 from Cilik.helpers.adminHelpers import DEVS
-from Cilik.helpers.basic import edit_or_reply
 from Cilik.modules.Ubot.help import add_command_help
 from Cilik.utils.misc import extract_user, extract_user_and_reason, list_admins
 
@@ -30,7 +29,9 @@ unmute_permissions = ChatPermissions(
 
 
 @Client.on_message(
-    filters.group & filters.command(["setchatphoto", "setgpic"], [".", "-", "^", "!", "?"]) & filters.me
+    filters.group
+    & filters.command(["setchatphoto", "setgpic"], [".", "-", "^", "!", "?"])
+    & filters.me
 )
 async def set_chat_photo(client: Client, message: Message):
     zuzu = (await client.get_chat_member(message.chat.id, client.me.id)).privileges
@@ -52,7 +53,9 @@ async def set_chat_photo(client: Client, message: Message):
 @Client.on_message(
     filters.group & filters.command("cban", ["."]) & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.group & filters.command("ban", [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.group & filters.command("ban", [".", "-", "^", "!", "?"]) & filters.me
+)
 async def member_ban(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
     Cilik = await message.reply("💈 `Processing...`")
@@ -88,7 +91,9 @@ async def member_ban(client: Client, message: Message):
 
 
 @Client.on_message(filters.command("cunban", ["."]) & filters.user(DEVS) & ~filters.me)
-@Client.on_message(filters.group & filters.command("unban", [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.group & filters.command("unban", [".", "-", "^", "!", "?"]) & filters.me
+)
 async def member_unban(client: Client, message: Message):
     reply = message.reply_to_message
     Cilik = await message.reply("💈 `Processing...`")
@@ -114,7 +119,9 @@ async def member_unban(client: Client, message: Message):
 @Client.on_message(
     filters.command(["cpin", "cunpin"], ["."]) & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.command(["pin", "unpin"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["pin", "unpin"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def pin_message(client: Client, message):
     if not message.reply_to_message:
         return await message.reply("Reply to a message to pin/unpin it.")
@@ -166,7 +173,9 @@ async def mute(client: Client, message: Message):
 @Client.on_message(
     filters.command(["cunmute"], ["."]) & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.group & filters.command("unmute", [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.group & filters.command("unmute", [".", "-", "^", "!", "?"]) & filters.me
+)
 async def unmute(client: Client, message: Message):
     user_id = await extract_user(message)
     Cilik = await message.reply("💈 `Processing...`")
@@ -183,7 +192,9 @@ async def unmute(client: Client, message: Message):
 @Client.on_message(
     filters.command(["ckick", "cdkick"], ["."]) & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.command(["kick", "dkick"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["kick", "dkick"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def kick_user(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
     Cilik = await message.reply("💈 `Processing...`")
@@ -222,7 +233,9 @@ async def kick_user(client: Client, message: Message):
     & ~filters.me
 )
 @Client.on_message(
-    filters.group & filters.command(["promote", "fullpromote"], [".", "-", "^", "!", "?"]) & filters.me
+    filters.group
+    & filters.command(["promote", "fullpromote"], [".", "-", "^", "!", "?"])
+    & filters.me
 )
 async def promotte(client: Client, message: Message):
     user_id = await extract_user(message)
@@ -271,7 +284,9 @@ async def promotte(client: Client, message: Message):
     & filters.user(DEVS)
     & ~filters.me
 )
-@Client.on_message(filters.group & filters.command("demote", [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.group & filters.command("demote", [".", "-", "^", "!", "?"]) & filters.me
+)
 async def demote(client: Client, message: Message):
     user_id = await extract_user(message)
     Cilik = await message.reply("💈 `Processing...`")

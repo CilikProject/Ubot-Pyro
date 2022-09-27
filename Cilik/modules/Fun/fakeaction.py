@@ -14,7 +14,6 @@ from pyrogram.raw import functions
 from pyrogram.types import Message
 
 from Cilik.helpers.PyroHelpers import ReplyCheck
-
 from Cilik.modules.Ubot.help import add_command_help
 
 commands = {
@@ -33,7 +32,9 @@ commands = {
 }
 
 
-@Client.on_message(filters.command(list(commands), [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(list(commands), [".", "-", "^", "!", "?"]) & filters.me
+)
 async def fakeactions_handler(client: Client, message: Message):
     cmd = message.command[0]
     try:

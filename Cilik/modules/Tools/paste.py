@@ -10,22 +10,11 @@
 
 import os
 import re
-import asyncio
-from asyncio import gather
-from base64 import b64decode
-from io import BytesIO
-
-import aiohttp
-import requests
 
 import aiofiles
+import aiohttp
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from Cilik.helpers.basic import edit_or_reply
-from Cilik.utils.pastebin import paste
-
-from Cilik.modules.Ubot.help import add_command_help
 
 BASE = "https://batbin.me/"
 
@@ -50,6 +39,7 @@ async def Cilikbin(content: str):
 
 pattern = re.compile(r"^text/|json$|yaml$|xml$|toml$|x-sh$|x-shellscript$")
 
+
 @Client.on_message(filters.command("paste", [".", "-", "^", "!", "?"]) & filters.me)
 async def patebin(client: Client, message: Message):
     if not message.reply_to_message:
@@ -62,7 +52,9 @@ async def patebin(client: Client, message: Message):
         content = str(r.text)
     elif r.document:
         if r.document.file_size > 40000:
-            return await m.edit_text("Anda hanya dapat paste file yang lebih kecil dari 40KB.")
+            return await m.edit_text(
+                "Anda hanya dapat paste file yang lebih kecil dari 40KB."
+            )
         if not pattern.search(r.document.mime_type):
             return await m.edit_text("Hanya untuk text dan documents.")
         doc = await message.reply_to_message.download()

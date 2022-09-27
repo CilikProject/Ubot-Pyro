@@ -17,7 +17,6 @@ from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.SQL import no_log_pms_sql
 from Cilik.helpers.SQL.globals import addgvar, gvarstatus
 from Cilik.helpers.tools import get_arg
-
 from Cilik.modules.Ubot.help import add_command_help
 
 
@@ -62,7 +61,7 @@ async def monito_p_m_s(client: Client, message: Message):
         except BaseException:
             pass
 
-          
+
 @Client.on_message(filters.group & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client: Client, message: Message):
     if BOTLOG_CHATID == -100:
@@ -99,8 +98,10 @@ async def set_no_log_p_m(client: Client, message: Message):
             no_log_pms_sql.approve(message.chat.id)
             await message.edit("**LOG Chat dari Grup ini Berhasil Dimatikan**")
 
-            
-@Client.on_message(filters.command(["pmlog", "pmlogger"], [".", "-", "^", "!", "?"]) & filters.me)
+
+@Client.on_message(
+    filters.command(["pmlog", "pmlogger"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def set_pmlog(client: Client, message: Message):
     if BOTLOG_CHATID == -100:
         return await message.edit(
@@ -127,8 +128,11 @@ async def set_pmlog(client: Client, message: Message):
     else:
         await edit_or_reply(message, "**PM LOG Sudah Dimatikan**")
 
-        
-@Client.on_message(filters.command(["gruplog", "grouplog", "gclog"], [".", "-", "^", "!", "?"]) & filters.me)
+
+@Client.on_message(
+    filters.command(["gruplog", "grouplog", "gclog"], [".", "-", "^", "!", "?"])
+    & filters.me
+)
 async def set_gruplog(client: Client, message: Message):
     if BOTLOG_CHATID == -100:
         return await message.edit(
@@ -155,7 +159,7 @@ async def set_gruplog(client: Client, message: Message):
     else:
         await edit_or_reply(message, "**Group Log Sudah Dimatikan**")
 
-        
+
 add_command_help(
     "logs",
     [
@@ -177,4 +181,3 @@ add_command_help(
         ],
     ],
 )
-        

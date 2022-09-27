@@ -1,8 +1,7 @@
-from pyrogram.errors import RPCError
 from random import choice
-import asyncio
-from pyrogram import filters, enums, Client
-from pyrogram.types import Message
+
+from pyrogram import Client, enums, filters
+
 from Cilik.modules.Ubot.help import add_command_help
 
 
@@ -21,12 +20,12 @@ async def asupan(client, message):
             ]
         ),
         False,
-        caption=f"Nih Kak [{pop}](tg://user?id={ah}) Asupannya 🥵"
+        caption=f"Nih Kak [{pop}](tg://user?id={ah}) Asupannya 🥵",
     )
 
     await yanto.delete()
-    
-    
+
+
 @Client.on_message(filters.command("ayang", [".", "-", "^", "!", "?"]) & filters.me)
 async def ayang(client, message):
     yanto = await message.reply("🔎 `Search Ayang...`")
@@ -42,52 +41,54 @@ async def ayang(client, message):
             ]
         ),
         False,
-        caption=f"Ayangnya [{pop}](tg://user?id={ah}) 💝"
+        caption=f"Ayangnya [{pop}](tg://user?id={ah}) 💝",
     )
 
     await yanto.delete()
-    
-    
+
+
 @Client.on_message(filters.command("ppcp", [".", "-", "^", "!", "?"]) & filters.me)
 async def ppcp(client, message):
     yanto = await message.reply("🔎 `Search PP Couple...`")
-    pop = message.from_user.first_name
-    ah = message.from_user.id
+    message.from_user.first_name
+    message.from_user.id
     await message.reply_photo(
         choice(
             [
                 lol.photo.file_id
                 async for lol in client.search_messages(
-                    "ppcpcilik", filter=enums.MessagesFilter.PHOTO)
+                    "ppcpcilik", filter=enums.MessagesFilter.PHOTO
+                )
             ]
         ),
         False,
-        caption=f"📌 PP Couple nya Nih Kak"
+        caption=f"📌 PP Couple nya Nih Kak",
     )
 
-    await yanto.delete()    
-   
+    await yanto.delete()
+
 
 @Client.on_message(filters.command("ppanime", [".", "-", "^", "!", "?"]) & filters.me)
 async def ppanime(client, message):
     yanto = await message.reply("🔎 `Search PP Anime...`")
-    pop = message.from_user.first_name
-    ah = message.from_user.id
+    message.from_user.first_name
+    message.from_user.id
     await message.reply_photo(
         choice(
             [
                 lol.photo.file_id
                 async for lol in client.search_messages(
-                    "animehikarixa", filter=enums.MessagesFilter.PHOTO)
+                    "animehikarixa", filter=enums.MessagesFilter.PHOTO
+                )
             ]
         ),
         False,
-        caption=f"📌 PP Anime nya Nih Kak"
+        caption=f"📌 PP Anime nya Nih Kak",
     )
 
     await yanto.delete()
 
-    
+
 add_command_help(
     "asupan",
     [

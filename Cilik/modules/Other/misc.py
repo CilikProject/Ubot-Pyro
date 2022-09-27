@@ -6,25 +6,18 @@
 # <https://www.github.com/mrismanaziz/PyroMan-Userbot/blob/main/LICENSE/>.
 #
 # t.me/SharingUserbot & t.me/Lunatic0de
-# Cilik-PyroBot 
+# Cilik-PyroBot
 
-import os
 
 import asyncio
-import random
-from asyncio import sleep
 from datetime import datetime
 
-from pyrogram import Client, enums,  filters, raw
+from pyrogram import Client, enums, filters, raw
 from pyrogram.types import Message
 
 from Cilik import *
-from Cilik.helpers.basic import edit_or_reply
-
-from Cilik.utils import s_paste
 from Cilik.helpers.PyroHelpers import ReplyCheck
 from Cilik.helpers.tools import get_arg
-
 from Cilik.modules.Ubot.help import add_command_help
 
 
@@ -44,9 +37,11 @@ async def spamban(client: Client, m: Message):
     spambot_msg = response.updates[1].message.id + 1
     status = await client.get_messages(chat_id="SpamBot", message_ids=spambot_msg)
     await wait_msg.edit_text(f"-⋟ {status.text}")
-    
-    
-@Client.on_message(filters.command(["webshot", "ss"], [".", "-", "^", "!", "?"]) & filters.me)
+
+
+@Client.on_message(
+    filters.command(["webshot", "ss"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def webshot(client: Client, message: Message):
     Man = await message.reply("💈 `Processing...`")
     try:
@@ -73,8 +68,10 @@ async def webshot(client: Client, message: Message):
             message.chat.id, f"**Something went wrong\nLog:{error}...**"
         )
 
-    
-@Client.on_message(filters.me & filters.command(["q", "quotly"], [".", "-", "^", "!", "?"]))
+
+@Client.on_message(
+    filters.me & filters.command(["q", "quotly"], [".", "-", "^", "!", "?"])
+)
 async def quotly(client: Client, message: Message):
     args = get_arg(message)
     if not message.reply_to_message and not args:
@@ -148,7 +145,10 @@ async def stats(client: Client, message: Message):
     )
 
 
-@Client.on_message(filters.command(["tt", "tiktok", "ig", "sosmed"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["tt", "tiktok", "ig", "sosmed"], [".", "-", "^", "!", "?"])
+    & filters.me
+)
 async def sosmed(client: Client, message: Message):
     Man = await message.reply("`📥 Downloading...`")
     link = get_arg(message)
@@ -176,8 +176,8 @@ async def sosmed(client: Client, message: Message):
             ),
         )
         await client.delete_messages(bot, 2)
-        
-        
+
+
 add_command_help(
     "misc",
     [
@@ -185,9 +185,15 @@ add_command_help(
             ".q or .quote",
             "To Make a Quote",
         ],
-        [".q <warna> atau .quotly <warna>", "Membuat pesan menjadi sticker dengan custom warna background yang diberikan."],
+        [
+            ".q <warna> atau .quotly <warna>",
+            "Membuat pesan menjadi sticker dengan custom warna background yang diberikan.",
+        ],
         [".limit", "Check Limit telegram from @SpamBot."],
-        [".webshot <link> `atau` .ss <link>", "Untuk Mengscreenshot halaman web yang diberikan."],
+        [
+            ".webshot <link> `atau` .ss <link>",
+            "Untuk Mengscreenshot halaman web yang diberikan.",
+        ],
         [".stats", "To Check Your Account Status, how Joined Chats."],
         [".tgm", "Reply to Media as args to upload it to telegraph."],
         [".clone", "To Clone someone Profile."],
@@ -206,4 +212,3 @@ add_command_help(
         ],
     ],
 )
-

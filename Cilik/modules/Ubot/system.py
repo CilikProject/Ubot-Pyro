@@ -17,7 +17,6 @@ from pyrogram.types import Message
 from Cilik import BOTLOG_CHATID, LOGGER
 from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.misc import HAPP
-
 from Cilik.modules.Ubot.help import add_command_help
 
 
@@ -37,7 +36,9 @@ async def restart_bot(_, message: Message):
         execle(sys.executable, *args, environ)
 
 
-@Client.on_message(filters.command(["shutdown", "off"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["shutdown", "off"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def shutdown_bot(client: Client, message: Message):
     if BOTLOG_CHATID:
         await client.send_message(

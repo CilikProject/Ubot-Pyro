@@ -15,14 +15,13 @@ from pyrogram import filters
 from pyrogram.errors import YouBlockedUser
 from pyrogram.types import *
 
-from Cilik.helpers.basic import edit_or_reply
+from Cilik.modules.Ubot.help import add_command_help
 from Cilik.utils import extract_user
 
 
-from Cilik.modules.Ubot.help import add_command_help
-
-
-@Client.on_message(filters.command(["sg", "sa", "sangmata"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["sg", "sa", "sangmata"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def sg(client: Client, message: Message):
     args = await extract_user(message)
     lol = await message.reply("💈 `Processing...`")
@@ -54,7 +53,7 @@ async def sg(client: Client, message: Message):
             await message.reply(stalk.text)
             await stalk.delete()
 
-            
+
 add_command_help(
     "sangmata",
     [

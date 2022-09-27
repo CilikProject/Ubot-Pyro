@@ -1,16 +1,17 @@
-# Cilik-PyroBot 
+# Cilik-PyroBot
 
 import html
 
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
-from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.parser import mention_html, mention_markdown
 from Cilik.modules.Ubot.help import add_command_help
 
 
-@Client.on_message(filters.me & filters.command(["admins", "staff"], [".", "-", "^", "!", "?"]))
+@Client.on_message(
+    filters.me & filters.command(["admins", "staff"], [".", "-", "^", "!", "?"])
+)
 async def adminlist(client: Client, message: Message):
     replyid = None
     toolong = False
@@ -72,7 +73,10 @@ async def adminlist(client: Client, message: Message):
     else:
         await message.edit(teks)
 
-@Client.on_message(filters.command(["kickdel", "zombies"], [".", "-", "^", "!", "?"]) & filters.me)
+
+@Client.on_message(
+    filters.command(["kickdel", "zombies"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def kickdel_cmd(client: Client, message: Message):
     Man = await message.reply("<b>Kicking deleted accounts...</b>")
     # noinspection PyTypeChecker
@@ -82,10 +86,13 @@ async def kickdel_cmd(client: Client, message: Message):
         if member.user.is_deleted
     ]
     await Man.edit(f"<b>Successfully kicked {len(values)} deleted account(s)</b>")
-    
+
 
 @Client.on_message(
-    filters.me & filters.command(["reportadmin", "reportadmins", "report"], [".", "-", "^", "!", "?"])
+    filters.me
+    & filters.command(
+        ["reportadmin", "reportadmins", "report"], [".", "-", "^", "!", "?"]
+    )
 )
 async def report_admin(client: Client, message: Message):
     await message.delete()
@@ -132,7 +139,7 @@ async def report_admin(client: Client, message: Message):
             message.chat.id, teks, parse_mode=enums.ParseMode.HTML
         )
 
-        
+
 @Client.on_message(filters.me & filters.command(["hidetag"], [".", "-", "^", "!", "?"]))
 async def tag_all_users(client: Client, message: Message):
     await message.delete()
@@ -155,9 +162,11 @@ async def tag_all_users(client: Client, message: Message):
         await client.send_message(
             message.chat.id, text, parse_mode=enums.ParseMode.HTML
         )
-        
 
-@Client.on_message(filters.me & filters.command(["botlist", "bots"], [".", "-", "^", "!", "?"]))
+
+@Client.on_message(
+    filters.me & filters.command(["botlist", "bots"], [".", "-", "^", "!", "?"])
+)
 async def get_list_bots(client: Client, message: Message):
     replyid = None
     if len(message.text.split()) >= 2:
@@ -188,11 +197,14 @@ async def get_list_bots(client: Client, message: Message):
         await client.send_message(message.chat.id, teks, reply_to_message_id=replyid)
     else:
         await message.edit(teks)
-        
+
 
 spam_chats = []
-     
-@Client.on_message(filters.command(["tagall", "all"], [".", "-", "^", "!", "?"]) & filters.me)
+
+
+@Client.on_message(
+    filters.command(["tagall", "all"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def mentionall(client: Client, message: Message):
     await message.delete()
     chat_id = message.chat.id
@@ -203,7 +215,7 @@ async def mentionall(client: Client, message: Message):
 
     spam_chats.append(chat_id)
     usrnum = 0
-    usrtxt = ''
+    usrtxt = ""
     async for usr in client.iter_chat_members(chat_id):
         if not chat_id in spam_chats:
             break
@@ -217,13 +229,13 @@ async def mentionall(client: Client, message: Message):
                 await rep.reply(usrtxt)
             await sleep(2)
             usrnum = 0
-            usrtxt = ''
+            usrtxt = ""
     try:
         spam_chats.remove(chat_id)
     except:
         pass
-    
-    
+
+
 @Client.on_message(filters.command("cancel", [".", "-", "^", "!", "?"]) & filters.me)
 async def cancel_spam(client: Client, message: Message):
     if not message.chat.id in spam_chats:
@@ -233,9 +245,9 @@ async def cancel_spam(client: Client, message: Message):
             spam_chats.remove(message.chat.id)
         except:
             pass
-        return await message.edit("__Stopped Mention.__")    
-    
-    
+        return await message.edit("__Stopped Mention.__")
+
+
 add_command_help(
     "groups",
     [
@@ -245,6 +257,5 @@ add_command_help(
         [".hidetag", "Untuk menandai semua anggota grup dengan angjay rahasia."],
         [".zombies", "Menghapus akun yang dihapus."],
         [".report", "Laporkan pengguna."],
-        
     ],
 )

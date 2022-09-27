@@ -17,8 +17,8 @@ import heroku3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 
-from config import BRANCH, GIT_TOKEN, HEROKU_API_KEY, HEROKU_APP_NAME
 from Cilik import LOGGER
+from config import BRANCH, GIT_TOKEN, HEROKU_API_KEY, HEROKU_APP_NAME
 
 HAPP = None
 
@@ -58,7 +58,9 @@ def install_req(cmd: str) -> Tuple[str, str, int, int]:
 
     return asyncio.get_event_loop().run_until_complete(install_requirements())
 
+
 CBHDSYS = "https://github.com/hidagans/Cilik-Ubot"
+
 
 def git():
     REPO_LINK = CBHDSYS
@@ -126,9 +128,7 @@ async def in_heroku():
 async def create_botlog(client):
     if HAPP is None:
         return
-    LOGGER("Cilik").info(
-        "TUNGGU SEBENTAR. SEDANG MEMBUAT GROUP LOG USERBOT UNTUK ANDA"
-    )
+    LOGGER("Cilik").info("TUNGGU SEBENTAR. SEDANG MEMBUAT GROUP LOG USERBOT UNTUK ANDA")
     desc = "Group Log untuk Cilik-Ubot.\n\nHARAP JANGAN KELUAR DARI GROUP INI.\n\n⚡ Powered By ~ @CilikProject ⚡"
     try:
         gruplog = await client.create_supergroup("⚡ Cilik-Logs ⚡", desc)

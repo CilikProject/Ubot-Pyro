@@ -6,7 +6,10 @@ from Cilik.helpers.PyroHelpers import ReplyCheck
 from Cilik.helpers.tools import run_cmd
 from Cilik.modules.Ubot.help import add_command_help
 
-@Client.on_message(filters.command("extractaudio", [".", "-", "^", "!", "?"]) & filters.me)
+
+@Client.on_message(
+    filters.command("extractaudio", [".", "-", "^", "!", "?"]) & filters.me
+)
 async def extract_audio(client: Client, message: Message):
     replied = message.reply_to_message
     if not replied:
@@ -36,6 +39,7 @@ async def extract_audio(client: Client, message: Message):
     else:
         await message.reply("**Mohon Balas Ke Video**")
         return
+
 
 @Client.on_message(filters.command("makevoice", [".", "-", "^", "!", "?"]) & filters.me)
 async def makevoice(client: Client, message: Message):
@@ -73,6 +77,7 @@ async def makevoice(client: Client, message: Message):
         await message.reply("**Mohon Balas Ke Audio atau video**")
         return
 
+
 add_command_help(
     "converter",
     [
@@ -80,4 +85,3 @@ add_command_help(
         [".makevoice <reply to file>", "make voive video and audio"],
     ],
 )
-    

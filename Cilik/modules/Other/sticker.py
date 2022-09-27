@@ -9,9 +9,10 @@
 # Cilik-PyroBot
 
 
-from io import BytesIO
 import asyncio
 import os
+from io import BytesIO
+
 import cv2
 import requests
 from bs4 import BeautifulSoup as bs
@@ -26,13 +27,13 @@ from pyrogram.types import Message
 from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.PyroHelpers import ReplyCheck
 from Cilik.helpers.tools import get_arg, get_text, resize_media
+from Cilik.modules.Ubot.help import add_command_help
 from Cilik.utils.tools import add_text_img, bash
 
-from Cilik.modules.Ubot.help import add_command_help
 
-
-
-@Client.on_message(filters.command(["tikel", "kang"], [".", "^", "!", "-", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["tikel", "kang"], [".", "^", "!", "-", "?"]) & filters.me
+)
 async def kang(client: Client, message: Message):
     user = client.me
     replied = message.reply_to_message
@@ -253,7 +254,9 @@ async def get_response(message, client):
     return [x async for x in client.get_chat_history("Stickers", limit=1)][0].text
 
 
-@Client.on_message(filters.command(["packinfo", "stickerinfo"], [".", "^", "!", "-", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["packinfo", "stickerinfo"], [".", "^", "!", "-", "?"]) & filters.me
+)
 async def packinfo(client: Client, message: Message):
     rep = await message.reply("💈 `Processing...`")
     if not message.reply_to_message:
@@ -383,11 +386,13 @@ async def tinying(client: Client, message: Message):
     )
     os.remove(file)
     os.remove(ik)
-    
+
     await Man.delete()
 
 
-@Client.on_message(filters.command(["mmf", "memify"], [".", "^", "!", "-", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["mmf", "memify"], [".", "^", "!", "-", "?"]) & filters.me
+)
 async def memify(client: Client, message: Message):
     if not message.reply_to_message_id:
         await message.reply("**Balas ke pesan foto atau sticker!**")
@@ -413,7 +418,10 @@ async def memify(client: Client, message: Message):
     os.remove(meme)
 
 
-@Client.on_message(filters.command(["get", "getsticker", "mtoi"], [".", "^", "!", "-", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["get", "getsticker", "mtoi"], [".", "^", "!", "-", "?"])
+    & filters.me
+)
 async def stick2png(client: Client, message: Message):
     try:
         xx = await message.reply("`Downloading . . .`")
@@ -457,8 +465,10 @@ add_command_help(
         ],
         [".get", "Balas ke sticker untuk mendapatkan foto sticker."],
         [".stickers <nama sticker>", "Untuk Mencari Sticker Pack."],
-        [".mmf Teks Atas ; Teks Bawah", "Balas Ke Pesan Sticker atau Foto akan Di ubah menjadi sticker teks meme yang di tentukan."],
+        [
+            ".mmf Teks Atas ; Teks Bawah",
+            "Balas Ke Pesan Sticker atau Foto akan Di ubah menjadi sticker teks meme yang di tentukan.",
+        ],
         [".tiny <reply ke foto/sticker>", "Untuk Mengubah Sticker Menjadi Kecil."],
     ],
 )
-

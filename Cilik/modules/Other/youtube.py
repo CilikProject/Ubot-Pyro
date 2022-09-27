@@ -11,16 +11,12 @@
 import asyncio
 import os
 import time
-from urllib.request import urlretrieve
 
-import requests as r
 import wget
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from youtubesearchpython import SearchVideos
 from yt_dlp import YoutubeDL
-
-from Cilik.helpers.basic import edit_or_reply
 
 from Cilik.modules.Ubot.help import add_command_help
 
@@ -39,7 +35,9 @@ def get_text(message: Message) -> [None, str]:
         return None
 
 
-@Client.on_message(filters.command(["vid", "video"],  [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["vid", "video"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def yt_vid(client: Client, message: Message):
     input_st = message.text
     input_str = input_st.split(" ", 1)[1]
@@ -96,7 +94,7 @@ async def yt_vid(client: Client, message: Message):
             os.remove(files)
 
 
-@Client.on_message(filters.command("song",  [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(filters.command("song", [".", "-", "^", "!", "?"]) & filters.me)
 async def song(client: Client, message: Message):
     input_str = get_text(message)
     rep = await message.reply("💈 `Processing...`")
@@ -156,6 +154,7 @@ async def song(client: Client, message: Message):
     for files in (downloaded_thumb, file_sung):
         if files and os.path.exists(files):
             os.remove(files)
+
 
 add_command_help(
     "youtube",

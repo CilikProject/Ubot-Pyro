@@ -11,9 +11,9 @@
 from pyrogram import idle
 from uvloop import install
 
-from config import BOT_VER
 from Cilik import BOTLOG_CHATID, LOGGER, LOOP, aiosession, bot1, bots
 from Cilik.helpers.misc import create_botlog, git, heroku
+from config import BOT_VER
 
 MSG_ON = """
 ✅ **Cilik-Ubot Activated.**
@@ -30,14 +30,10 @@ async def main():
             await bot.join_chat("Lunatic0de")
             await bot.join_chat("SharingUserbot")
             try:
-                await bot.send_message(
-                    BOTLOG_CHATID, MSG_ON.format(BOT_VER)
-                )
+                await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER))
             except BaseException:
                 pass
-            LOGGER("Cilik").info(
-                f"Logged in as {bot.me.first_name} | [ {bot.me.id} ]"
-            )
+            LOGGER("Cilik").info(f"Logged in as {bot.me.first_name} | [ {bot.me.id} ]")
         except Exception as a:
             LOGGER("main").warning(a)
     LOGGER("Cilik").info(f"Cilik-Ubot v{BOT_VER} ⚙️[⚡ Activated ⚡]")

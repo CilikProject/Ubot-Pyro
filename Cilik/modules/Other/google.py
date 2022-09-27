@@ -5,8 +5,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from Cilik.helpers.basic import edit_or_reply
-
 from Cilik.modules.Ubot.help import add_command_help
+
 
 def googlesearch(query):
     co = 1
@@ -28,8 +28,10 @@ def googlesearch(query):
         co = co + 1
     return returnquery
 
-  
-@Client.on_message(filters.command(["gs", "google"], [".", "^", "!", "-", "?"]) & filters.me)
+
+@Client.on_message(
+    filters.command(["gs", "google"], [".", "^", "!", "-", "?"]) & filters.me
+)
 async def gs(client: Client, message: Message):
     Man = await edit_or_reply(message, "`Processing...`")
     msg_txt = message.text

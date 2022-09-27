@@ -15,9 +15,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from Cilik import aiosession
-from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.PyroHelpers import ReplyCheck
-from Cilik.modules.Ubot.help import add_command_help
 
 
 async def make_carbon(code):
@@ -55,4 +53,3 @@ async def carbon_func(client: Client, message: Message):
         ),
     )
     carbon.close()
-

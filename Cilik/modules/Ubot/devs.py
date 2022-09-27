@@ -1,19 +1,15 @@
-from pyrogram import Client, filters 
-from pyrogram.types import Message
-from Cilik.helpers.adminHelpers import DEVS
-import asyncio
-import time
 import os
+import random
 import sys
-import random 
 import traceback
-from Cilik import *
-from Cilik.helpers.PyroHelpers import ReplyCheck
-import re
-import subprocess
 from io import StringIO
-from inspect import getfullargspec
+
+from pyrogram import Client, filters
+from pyrogram.types import Message
+
+from Cilik.helpers.adminHelpers import DEVS
 from Cilik.helpers.constants import First
+
 
 async def aexec(code, client, message):
     exec(
@@ -26,10 +22,16 @@ async def aexec(code, client, message):
     )
     return await locals()["__aexec"](client, message)
 
+
 p = print
 
-@Client.on_message(filters.command(["eval", "e", "i"], [",", "(", ";", "×", ":"]) & filters.user(DEVS))
-@Client.on_message(filters.group & filters.command(["eval", "e"], ["!", "_"]) & filters.me)
+
+@Client.on_message(
+    filters.command(["eval", "e", "i"], [",", "(", ";", "×", ":"]) & filters.user(DEVS)
+)
+@Client.on_message(
+    filters.group & filters.command(["eval", "e"], ["!", "_"]) & filters.me
+)
 async def evaluate(client: Client, message: Message):
     status_message = await message.reply("`Running ...`")
     try:
@@ -101,6 +103,4 @@ async def ciliks(client: Client, message: Message):
 
 @Client.on_message(filters.command("repo", [".", "-", "^", "!", "?"]) & filters.me)
 async def repo(client: Client, message: Message):
-    await message.reply(
-        First.REPO, disable_web_page_preview=True
-    )
+    await message.reply(First.REPO, disable_web_page_preview=True)

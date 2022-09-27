@@ -6,11 +6,10 @@ from threading import Event
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
-from config import BLACKLIST_CHAT, BOTLOG_CHATID
 from Cilik.helpers.basic import edit_or_reply
-from Cilik.utils.misc import extract_args
-
 from Cilik.modules.Ubot.help import *
+from Cilik.utils.misc import extract_args
+from config import BLACKLIST_CHAT, BOTLOG_CHATID
 
 commands = ["spam", "statspam", "slowspam", "fastspam"]
 SPAM_COUNT = [0]
@@ -24,7 +23,10 @@ def increment_spam_count():
 def spam_allowed():
     return SPAM_COUNT[0] < 50
 
-@Client.on_message(filters.me & filters.command(["dspam", "delayspam"], [".", "-", "^", "!", "?"]))
+
+@Client.on_message(
+    filters.me & filters.command(["dspam", "delayspam"], [".", "-", "^", "!", "?"])
+)
 async def delayspam(client: Client, message: Message):
     if message.chat.id in BLACKLIST_CHAT:
         return await edit_or_reply(
@@ -57,7 +59,7 @@ async def delayspam(client: Client, message: Message):
         BOTLOG_CHATID, "**#DELAYSPAM**\nDelaySpam was executed successfully"
     )
 
-    
+
 @Client.on_message(filters.command(commands, [".", "-", "^", "!", "?"]) & filters.me)
 async def sspam(client: Client, message: Message):
     amount = int(message.command[1])
@@ -79,9 +81,12 @@ async def sspam(client: Client, message: Message):
 
         await asyncio.sleep(cooldown[message.command[0]])
 
-        
+
 @Client.on_message(
-    filters.me & filters.command(["sspam", "stkspam", "spamstk", "stickerspam"], [".", "-", "^", "!", "?"])
+    filters.me
+    & filters.command(
+        ["sspam", "stkspam", "spamstk", "stickerspam"], [".", "-", "^", "!", "?"]
+    )
 )
 async def spam_stick(client: Client, message: Message):
     if not message.reply_to_message:
@@ -111,8 +116,8 @@ async def spam_stick(client: Client, message: Message):
                 sticker = message.reply_to_message.sticker.file_id
                 await client.send_sticker(message.chat.id, sticker)
                 await asyncio.sleep(0.10)
-       
-    
+
+
 add_command_help(
     "spam",
     [
@@ -123,4 +128,3 @@ add_command_help(
         ],
     ],
 )
-

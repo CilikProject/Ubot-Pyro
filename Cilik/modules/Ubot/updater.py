@@ -9,8 +9,6 @@ from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import BRANCH
-from config import GIT_TOKEN, HEROKU_API_KEY, HEROKU_APP_NAME
 from Cilik.helpers.adminHelpers import DEVS
 from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.misc import HAPP, XCB
@@ -18,6 +16,7 @@ from Cilik.helpers.tools import get_arg
 from Cilik.utils.misc import restart
 from Cilik.utils.pastebin import PasteBin
 from Cilik.utils.tools import bash
+from config import BRANCH, GIT_TOKEN, HEROKU_API_KEY, HEROKU_APP_NAME
 
 from .help import add_command_help
 
@@ -60,7 +59,7 @@ async def updateme_requirements():
     except Exception as e:
         return repr(e)
 
-    
+
 @Client.on_message(
     filters.command("diupdate", ["."]) & filters.user(DEVS) & ~filters.me
 )
@@ -258,4 +257,3 @@ add_command_help(
         ["update deploy", "Untuk mengupdate userbot."],
     ],
 )
-       

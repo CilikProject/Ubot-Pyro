@@ -2,27 +2,25 @@
 
 import asyncio
 import time
-from datetime import datetime
-import speedtest
 
+import speedtest
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import *
-from Cilik import CMD_HELP, StartTime
 from Cilik.helpers.constants import WWW
 from Cilik.helpers.expand import expand_url
-from Cilik.helpers.PyroHelpers import SpeedConvert, ReplyCheck
+from Cilik.helpers.PyroHelpers import SpeedConvert
 from Cilik.helpers.shorten import shorten_url
-from Cilik.utils.tools import get_readable_time
-from Cilik.helpers.adminHelpers import DEVS
-from Cilik.helpers.basic import edit_or_reply
-from .help import add_command_help
+from config import *
 
+from .help import add_command_help
 
 # Cilik Variable
 
-@Client.on_message(filters.command(["speed", "speedtest"], [".", "!", "-", "^", "?"]) & filters.me)
+
+@Client.on_message(
+    filters.command(["speed", "speedtest"], [".", "!", "-", "^", "?"]) & filters.me
+)
 async def speed_test(client: Client, message: Message):
     new_msg = await message.edit("⚡️ `Running speed test . . .`")
     spd = speedtest.Speedtest()
@@ -32,7 +30,9 @@ async def speed_test(client: Client, message: Message):
     )
     spd.get_best_server()
 
-    new_msg = await message.edit(f"`{new_msg.text}`\n" "📥 `Testing download speed . . .`")
+    new_msg = await message.edit(
+        f"`{new_msg.text}`\n" "📥 `Testing download speed . . .`"
+    )
     spd.download()
 
     new_msg = await message.edit(f"`{new_msg.text}`\n" "📤 `Testing upload speed . . .`")
@@ -57,9 +57,7 @@ async def speed_test(client: Client, message: Message):
 @Client.on_message(filters.command("dc", [".", "!", "-", "^", "?"]) & filters.me)
 async def nearest_dc(client: Client, message: Message):
     dc = await client.send(functions.help.GetNearestDc())
-    await message.reply(
-        WWW.NearestDC.format(dc.country, dc.nearest_dc, dc.this_dc)
-    )
+    await message.reply(WWW.NearestDC.format(dc.country, dc.nearest_dc, dc.this_dc))
 
 
 @Client.on_message(filters.command("ping", [".", "!", "-", "^", "?"]) & filters.me)
@@ -128,14 +126,18 @@ async def shorten(client: Client, message: Message):
     await asyncio.sleep(3)
     await message.delete()
 
- 
+
 add_command_help(
     "cilik",
     [
         [".ping", "Ping Bot."],
         [".dc", "Dapatkan Telegram DC Anda."],
-        [".cilik or .alive", "Perintah ini untuk memeriksa userbot anda berfungsi atau tidak."],
-        [   ".speedtest `or` .speed",
+        [
+            ".cilik or .alive",
+            "Perintah ini untuk memeriksa userbot anda berfungsi atau tidak.",
+        ],
+        [
+            ".speedtest `or` .speed",
             "Menjalankan tes kecepatan di server yang dihosting oleh bot pengguna ini.."
             "Telegram Speedtest dari server Anda..",
         ],

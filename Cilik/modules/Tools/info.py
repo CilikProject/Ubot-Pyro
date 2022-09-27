@@ -6,7 +6,7 @@
 # <https://www.github.com/mrismanaziz/PyroMan-Userbot/blob/main/LICENSE/>.
 #
 # t.me/SharingUserbot & t.me/Lunatic0de
-# Cilik-PyroBot 
+# Cilik-PyroBot
 
 from asyncio import gather
 from os import remove
@@ -15,11 +15,9 @@ from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.types import Message
 
-from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.PyroHelpers import ReplyCheck
-from Cilik.utils import extract_user
-
 from Cilik.modules.Ubot.help import add_command_help
+from Cilik.utils import extract_user
 
 
 @Client.on_message(filters.command("id", [".", "-", "^", "!", "?"]) & filters.me)
@@ -111,9 +109,12 @@ async def get_id(client: Client, message: Message):
         await message.reply(f"👥 **Chat ID:** `{message.chat.id}`")
 
 
-#info user variable
+# info user variable
 
-@Client.on_message(filters.command(["whois", "info"], [".", "-", "^", "!", "?"]) & filters.me)
+
+@Client.on_message(
+    filters.command(["whois", "info"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def who_is(client: Client, message: Message):
     user_id = await extract_user(message)
     Man = await message.reply("💈 `Processing...`")
@@ -176,7 +177,10 @@ async def who_is(client: Client, message: Message):
         return await Man.edit(f"**INFO:** `{e}`")
 
 
-@Client.on_message(filters.command(["chatinfo", "cinfo", "ginfo"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["chatinfo", "cinfo", "ginfo"], [".", "-", "^", "!", "?"])
+    & filters.me
+)
 async def chatinfo_handler(client: Client, message: Message):
     Man = await message.reply("💈 `Processing...`")
     try:
@@ -235,12 +239,16 @@ async def chatinfo_handler(client: Client, message: Message):
     except Exception as e:
         return await Man.edit(f"**INFO:** `{e}`")
 
+
 add_command_help(
     "info",
     [
         [".id", "Send id of what you replied to."],
         [".whois or .info", "Untuk mencari ingfo target."],
         [".sg", "Reply to a user to find name history."],
-        [".chatinfo <username/chatid/reply>", "dapatkan info group dengan deskripsi lengkap."],        
+        [
+            ".chatinfo <username/chatid/reply>",
+            "dapatkan info group dengan deskripsi lengkap.",
+        ],
     ],
 )

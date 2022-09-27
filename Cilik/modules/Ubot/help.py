@@ -1,15 +1,14 @@
-import asyncio
 from prettytable import PrettyTable
-from pyrogram import Client, filters, enums
+from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
 from Cilik import CMD_HELP
-from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.utility import split_list
 
 heading = "──「 **{0}** 」──\n"
 
 HELP_LOGO = "https://telegra.ph/file/47cbe59d71d4e2b8124a8.jpg"
+
 
 @Client.on_message(filters.command("help", [".", "-", "^", "!", "?"]) & filters.me)
 async def module_help(client: Client, message: Message):
@@ -32,20 +31,21 @@ async def module_help(client: Client, message: Message):
         for x in split_list(sorted(CMD_HELP.keys()), 2):
             ac.add_row([x[0], x[1] if len(x) >= 2 else None])
 
-            
         text = "𝗖𝗶𝗹𝗶𝗸 𝗠𝗼𝗱𝘂𝗹𝗲𝘀 \n\n"
         text += "🔮 𝗨𝗯𝗼𝘁: -⋟ `cilik` -⋟ `alive` -⋟ `heroku` -⋟ `system` -⋟ `update` \n\n"
         text += "⚙️ 𝗧𝗼𝗼𝗹𝘀: -⋟ `create` -⋟ `converter` -⋟ `gcast` -⋟ `info` -⋟ `invite` -⋟ `locks` -⋟ `profile` -⋟ `parse` -⋟ `paste` -⋟ `purge` -⋟ `sangmata` -⋟ `translate` -⋟ `vctools` \n\n"
-        text += "🎈 𝗙𝘂𝗻: -⋟ `asupan` -⋟ `animasi` -⋟ `fakeaction` -⋟ `salam` -⋟ `toxic` \n\n"
+        text += (
+            "🎈 𝗙𝘂𝗻: -⋟ `asupan` -⋟ `animasi` -⋟ `fakeaction` -⋟ `salam` -⋟ `toxic` \n\n"
+        )
         text += "🧰 𝗢𝘁𝗵𝗲𝗿: -⋟ `admins` -⋟ `afk` -⋟ `globals` -⋟ `groups` -⋟ `google` -⋟ `join` -⋟ `logs` -⋟ `misc` -⋟ `nulis` -⋟ `spam` -⋟ `sticker` -⋟ `sosmed` -⋟ `pmpermit` -⋟ `youtube` \n\n\n"
         text += "📮 𝗣𝗿𝗲𝗳𝗶𝘅 -⋟ `[. - ^ ! ?]`\n"
         text += "     `.help [module_name]`\n"
-        
+
         await message.reply_photo(
-           photo=HELP_LOGO,
-           caption=text,
-        )     
-           
+            photo=HELP_LOGO,
+            caption=text,
+        )
+
     if help_arg:
         if help_arg in CMD_HELP:
             commands: dict = CMD_HELP[help_arg]
@@ -55,13 +55,12 @@ async def module_help(client: Client, message: Message):
             for x in commands:
                 this_command += f"-⋟ `{str(x)}`\n```{str(commands[x])}```\n\n"
 
-            await message.edit(this_command, parse_mode=enums.ParseMode.MARKDOWN
-            )
+            await message.edit(this_command, parse_mode=enums.ParseMode.MARKDOWN)
         else:
             await message.edit(
-                "`Please specify a valid module name.`", parse_mode=enums.ParseMode.MARKDOWN
+                "`Please specify a valid module name.`",
+                parse_mode=enums.ParseMode.MARKDOWN,
             )
-    
 
 
 def add_command_help(module_name, commands):

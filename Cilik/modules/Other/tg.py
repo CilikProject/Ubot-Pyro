@@ -6,15 +6,13 @@
 # <https://www.github.com/mrismanaziz/PyroMan-Userbot/blob/main/LICENSE/>.
 #
 # t.me/SharingUserbot & t.me/Lunatic0de
-# Cilik-PyroBot 
+# Cilik-PyroBot
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from telegraph import Telegraph, upload_file
 
-from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.tools import *
-
 from Cilik.modules.Ubot.help import *
 
 telegraph = Telegraph()
@@ -22,7 +20,9 @@ r = telegraph.create_account(short_name="Cilik-Ubot")
 auth_url = r["auth_url"]
 
 
-@Client.on_message(filters.command(["tg", "tgm", "telegraph"], [".", "-", "^","!"]) & filters.me)
+@Client.on_message(
+    filters.command(["tg", "tgm", "telegraph"], [".", "-", "^", "!"]) & filters.me
+)
 async def uptotelegraph(client: Client, message: Message):
     reply = message.reply_to_message
     filesize = 5242880
@@ -39,9 +39,7 @@ async def uptotelegraph(client: Client, message: Message):
                 client.me.first_name,
                 html_content=(reply.text.html).replace("\n", "<br>"),
             )
-            await Man.edit(
-                f"**📌 Uploaded: https://telegra.ph/{link.get('path')}**"
-            )
+            await Man.edit(f"**📌 Uploaded: https://telegra.ph/{link.get('path')}**")
         else:
             await Man.edit("The length text exceeds 4096 characters")
     elif reply.media:
@@ -65,9 +63,7 @@ async def uptotelegraph(client: Client, message: Message):
                 response = upload_file(loc)
             except Exception as e:
                 return await Man.edit(f"**ERROR:** `{e}`")
-            await Man.edit(
-                f"**📌 Uploaded: https://telegra.ph{response[0]}**"
-            )
+            await Man.edit(f"**📌 Uploaded: https://telegra.ph{response[0]}**")
             if os.path.exists(loc):
                 os.remove(loc)
         else:
@@ -76,5 +72,3 @@ async def uptotelegraph(client: Client, message: Message):
             )
     else:
         await Man.edit("Sorry, The File is not supported !")
-
-

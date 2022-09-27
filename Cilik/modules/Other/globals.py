@@ -13,11 +13,9 @@ from pyrogram.types import ChatPermissions, Message
 
 from Cilik import *
 from Cilik.helpers.adminHelpers import DEVS, WHITELIST
-from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.PyroHelpers import get_ub_chats
-from Cilik.utils import extract_user, extract_user_and_reason
-
 from Cilik.modules.Ubot.help import add_command_help
+from Cilik.utils import extract_user, extract_user_and_reason
 
 
 def globals_init():
@@ -54,9 +52,7 @@ async def gban_user(client: Client, message: Message):
     if user_id in DEVS:
         return await Cilik.edit("**Gagal GBAN karena dia adalah Pembuat saya 🗿**")
     if user_id in WHITELIST:
-        return await Man.edit(
-            "**Gagal GBAN karena dia adalah admin @CilikSupport 🗿**"
-        )
+        return await Man.edit("**Gagal GBAN karena dia adalah admin @CilikSupport 🗿**")
     if user_id:
         try:
             user = await client.get_users(user_id)
@@ -173,9 +169,7 @@ async def gmute_user(client: Client, message: Message):
     if user.id in DEVS:
         return await Man.edit("**Gagal GMUTE karena dia adalah Pembuat saya 🗿**")
     if user.id in WHITELIST:
-        return await Man.edit(
-            "**Gagal GMUTE karena dia adalah admin @CilikSupport 🗿**"
-        )
+        return await Man.edit("**Gagal GMUTE karena dia adalah admin @CilikSupport 🗿**")
     try:
         replied_user = reply.from_user
         if replied_user.is_self:
@@ -187,7 +181,9 @@ async def gmute_user(client: Client, message: Message):
         if sql2.is_gmuted(user.id):
             return await Cilik.edit("`User already gmuted`")
         sql2.gmute(user.id)
-        await Cilik.edit(f"[{user.first_name}](tg://user?id={user.id}) globally gmuted!")
+        await Cilik.edit(
+            f"[{user.first_name}](tg://user?id={user.id}) globally gmuted!"
+        )
         try:
             common_chats = await client.get_common_chats(user.id)
             for i in common_chats:
@@ -299,6 +295,6 @@ add_command_help(
             "Melakukan Global Muted.",
         ],
         [".ungmute <reply/username/userid>", "Membatalkan Global Muted."],
-        [".listgmute", "Menampilkan List Global Muted."],        
+        [".listgmute", "Menampilkan List Global Muted."],
     ],
 )

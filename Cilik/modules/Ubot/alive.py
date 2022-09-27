@@ -12,15 +12,13 @@ import asyncio
 import os
 import time
 from platform import python_version
-from telegraph import exceptions, upload_file
 
 from pyrogram import Client
 from pyrogram import __version__ as versipyro
 from pyrogram import filters
 from pyrogram.types import Message
+from telegraph import exceptions, upload_file
 
-from config import BOT_VER, CHANNEL
-from config import GROUP
 from Cilik import CMD_HELP, StartTime
 from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.PyroHelpers import ReplyCheck
@@ -28,6 +26,7 @@ from Cilik.helpers.SQL.globals import gvarstatus
 from Cilik.helpers.tools import convert_to_image
 from Cilik.utils import get_readable_time
 from Cilik.utils.misc import restart
+from config import BOT_VER, GROUP
 
 from .help import add_command_help
 
@@ -39,7 +38,9 @@ emoji = gvarstatus("ALIVE_EMOJI") or "⚡"
 alive_text = gvarstatus("ALIVE_TEKS_CUSTOM") or "Hey, I am alive."
 
 
-@Client.on_message(filters.command(["alive", "cilik"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["alive", "cilik"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def alive(client: Client, message: Message):
     xx = await edit_or_reply(message, "⚡")
     await asyncio.sleep(2)
@@ -70,7 +71,9 @@ async def alive(client: Client, message: Message):
         await xx.edit(man, disable_web_page_preview=True)
 
 
-@Client.on_message(filters.command("setalivelogo", [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command("setalivelogo", [".", "-", "^", "!", "?"]) & filters.me
+)
 async def setalivelogo(client: Client, message: Message):
     try:
         import Cilik.helpers.SQL.globals as sql
@@ -107,7 +110,9 @@ async def setalivelogo(client: Client, message: Message):
     restart()
 
 
-@Client.on_message(filters.command("setalivetext", [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command("setalivetext", [".", "-", "^", "!", "?"]) & filters.me
+)
 async def setalivetext(client: Client, message: Message):
     try:
         import Cilik.helpers.SQL.globals as sql

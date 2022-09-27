@@ -23,10 +23,10 @@ import urllib3
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from config import *
 from Cilik.helpers.basic import edit_or_reply
 from Cilik.helpers.misc import HAPP, in_heroku
 from Cilik.utils.misc import restart
+from config import *
 
 from .help import add_command_help
 
@@ -68,9 +68,7 @@ async def set_var(client: Client, message: Message):
 @Client.on_message(filters.command("getvar", [".", "-", "^", "!", "?"]) & filters.me)
 async def varget_(client: Client, message: Message):
     if len(message.command) != 2:
-        return await edit_or_reply(
-            message, f"<b>Usage:</b> .getvar [Var Name]"
-        )
+        return await edit_or_reply(message, f"<b>Usage:</b> .getvar [Var Name]")
     Man = await message.reply("💈 `Processing...`")
     check_var = message.text.split(None, 2)[1]
     if await in_heroku():
@@ -125,7 +123,9 @@ async def vardel_(client: Client, message: Message):
         restart()
 
 
-@Client.on_message(filters.command(["usage", "dyno"], [".", "-", "^", "!", "?"]) & filters.me)
+@Client.on_message(
+    filters.command(["usage", "dyno"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def usage_heroku(client: Client, message: Message):
     ### Credits CatUserbot
     if await in_heroku():

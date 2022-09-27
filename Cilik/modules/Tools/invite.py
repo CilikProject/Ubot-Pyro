@@ -15,8 +15,8 @@ from pyrogram.types import Message
 
 from Cilik import BOTLOG_CHATID
 from Cilik.helpers.basic import edit_or_reply
-
 from Cilik.modules.Ubot.help import add_command_help
+
 
 @Client.on_message(filters.me & filters.command("invite", [".", "-", "^", "!", "?"]))
 async def inviteee(client: Client, message: Message):
@@ -33,8 +33,10 @@ async def inviteee(client: Client, message: Message):
         return
     await mg.edit(f"`Sucessfully Added {len(user_list)} To This Group / Channel!`")
 
-    
-@Client.on_message(filters.command(["inviteall"], [".", "-", "^", "!", "?"]) & filters.me)
+
+@Client.on_message(
+    filters.command(["inviteall"], [".", "-", "^", "!", "?"]) & filters.me
+)
 async def inv(client: Client, message: Message):
     Man = await edit_or_reply(message, "`Processing . . .`")
     text = message.text.split(" ", 1)
@@ -57,9 +59,11 @@ async def inv(client: Client, message: Message):
                 mg = await client.send_message(BOTLOG_CHATID, f"**ERROR:** `{e}`")
                 await asyncio.sleep(0.3)
                 await mg.delete()
-    
-    
-@Client.on_message(filters.command("invitelink", [".", "-", "^", "!", "?"]) & filters.me)
+
+
+@Client.on_message(
+    filters.command("invitelink", [".", "-", "^", "!", "?"]) & filters.me
+)
 async def invite_link(client: Client, message: Message):
     Man = await edit_or_reply(message, "`Processing...`")
     if message.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
@@ -85,4 +89,3 @@ add_command_help(
         ],
     ],
 )
-    

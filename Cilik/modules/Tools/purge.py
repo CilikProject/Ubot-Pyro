@@ -15,7 +15,6 @@ from pyrogram.types import Message
 
 from Cilik.helpers.adminHelpers import DEVS
 from Cilik.helpers.basic import edit_or_reply
-
 from Cilik.modules.Ubot.help import add_command_help
 
 
@@ -35,7 +34,7 @@ async def del_msg(client: Client, message: Message):
     else:
         await message.delete()
 
-        
+
 @Client.on_message(
     filters.command("cpurge", ["."]) & filters.user(DEVS) & ~filters.via_bot
 )
@@ -68,7 +67,7 @@ async def purge(client: Client, message: Message):
     await asyncio.sleep(2)
     await done.delete()
 
-    
+
 @Client.on_message(
     filters.command("cpurgeme", ["."]) & filters.user(DEVS) & ~filters.via_bot
 )
@@ -102,7 +101,7 @@ async def purgeme(client: Client, message: Message):
         )
     await message.delete()
 
-    
+
 add_command_help(
     "purge",
     [
@@ -111,4 +110,3 @@ add_command_help(
         ["purgeme <angka>", "Menghapus jumlah pesan anda, yang mau anda hapus."],
     ],
 )
-

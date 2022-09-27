@@ -1,21 +1,17 @@
 # Cilik-PyroBot
 
-from os import getenv 
-import heroku3
 import asyncio
+from os import getenv
 
-import dotenv
+import heroku3
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 from requests import get
 
-from config import BLACKLIST_GCAST, HEROKU_APP_NAME, HEROKU_API_KEY
 from Cilik.helpers.adminHelpers import DEVS
-from Cilik.helpers.misc import HAPP, in_heroku
 from Cilik.helpers.tools import get_arg
-from Cilik.utils.misc import restart
-
 from Cilik.modules.Ubot.help import add_command_help
+from config import BLACKLIST_GCAST, HEROKU_API_KEY, HEROKU_APP_NAME
 
 while 0 < 6:
     _GCAST_BLACKLIST = get(
@@ -34,6 +30,7 @@ del _GCAST_BLACKLIST
 Heroku = heroku3.from_key(HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
 blchat = getenv("BLACKLIST_GCAST") or ""
+
 
 @Client.on_message(
     filters.group & filters.command("cgcast", ["."]) & filters.user(DEVS) & ~filters.me
@@ -64,9 +61,7 @@ async def gcast_cmd(client: Client, message: Message):
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-    await Cilik.edit_text(
-        f"Done in send to `{done}` chats, error in `{error}` chat(s)"
-    )
+    await Cilik.edit_text(f"Done in send to `{done}` chats, error in `{error}` chat(s)")
 
 
 @Client.on_message(filters.command("gucast", [".", "-", "^", "!", "?"]) & filters.me)
@@ -95,9 +90,8 @@ async def gucast_cmd(client: Client, message: Message):
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-    await Cilik.edit_text(
-        f"Done in send to `{done}` users, error in `{error}` user(s)"
-    )
+    await Cilik.edit_text(f"Done in send to `{done}` users, error in `{error}` user(s)")
+
 
 @Client.on_message(filters.command("blchat", [".", "-", "^", "!", "?"]) & filters.me)
 async def gcast_bl(client: Client, message: Message):
@@ -165,9 +159,7 @@ async def _(client: Client, message: Message):
         var = "BLACKLIST_GCAST"
         heroku_Config[var] = blacklistgrup
     else:
-        await xxx.edit(
-            "**Grup ini tidak ada dalam daftar blacklist gcast.**", 45
-        )
+        await xxx.edit("**Grup ini tidak ada dalam daftar blacklist gcast.**", 45)
 
 
 add_command_help(

@@ -1,12 +1,12 @@
 import glob
 from os.path import basename, dirname, isfile
 
-from config import *
 from Cilik import *
 from Cilik.helpers import *
 from Cilik.helpers.SQL import *
 from Cilik.resources import *
 from Cilik.utils import *
+from config import *
 
 
 def __list_all_modules():

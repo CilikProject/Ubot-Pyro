@@ -1,12 +1,11 @@
 # Cilik-PyroBot
 
 import asyncio
-from asyncio import sleep                                                                                               
-from pyrogram import Client, filters, enums
-from pyrogram.types import *
+
+from pyrogram import Client, enums, filters
 from pyrogram.errors import RPCError
-from pyrogram.errors import PeerIdInvalid 
-from Cilik import CMD_HELP
+from pyrogram.types import *
+
 from Cilik.modules.Ubot.help import add_command_help
 
 
@@ -25,7 +24,7 @@ async def nulis(client: Client, message: Message):
     if not text:
         return await message.reply("**Berikan Text atau Reply**")
     Cilik = await message.reply("`✍️ Writing...`")
-    bot = "awakmalas_bot" 
+    bot = "awakmalas_bot"
     chat = message.chat.id
     if text:
         try:
@@ -34,17 +33,23 @@ async def nulis(client: Client, message: Message):
             await client.send_message(bot, "Font 1")
             await asyncio.sleep(0.5)
             await client.send_message(bot, f"/malas1 {text}")
-            await asyncio.sleep(0.5)                          
+            await asyncio.sleep(0.5)
             await Cilik.edit("📤 `Uploaded...`")
-            await asyncio.sleep(5)                          
-        except RPCError:  
-            return await Cilik.edit("`Silahkan buka blockir @awakmalas_bot lalu coba lagi`")
-    async for kontol in client.search_messages(bot, filter=enums.MessagesFilter.PHOTO, limit=1):
-        await client.send_photo(chat, photo=kontol.photo.file_id, caption=f"📌 **Writing by Cilik-Ubot**")
+            await asyncio.sleep(5)
+        except RPCError:
+            return await Cilik.edit(
+                "`Silahkan buka blockir @awakmalas_bot lalu coba lagi`"
+            )
+    async for kontol in client.search_messages(
+        bot, filter=enums.MessagesFilter.PHOTO, limit=1
+    ):
+        await client.send_photo(
+            chat, photo=kontol.photo.file_id, caption=f"📌 **Writing by Cilik-Ubot**"
+        )
         await Cilik.delete()
         await kontol.delete()
 
-        
+
 add_command_help(
     "nulis",
     [
@@ -53,4 +58,4 @@ add_command_help(
             "untuk anda yang mager nulis",
         ]
     ],
-)        
+)
