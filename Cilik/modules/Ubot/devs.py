@@ -95,7 +95,7 @@ kopi = [
 async def seller(client: Client, message: Message):
     await message.reply_text("⚡️Cilik Reseller Acive⚡️")
 
-    
+
 @Client.on_message(filters.command("absen", ["."]) & filters.user(DEVS) & ~filters.me)
 async def absen(client: Client, message: Message):
     await message.reply_text(random.choice(kopi))
