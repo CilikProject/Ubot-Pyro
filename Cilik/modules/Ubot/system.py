@@ -22,7 +22,7 @@ from Cilik.helpers.adminHelpers import DEVS
 
 
 @Client.on_message(
-    filters.command("crestart"], [",", "(", ";", "×", ":"]) & filters.user(DEVS)
+    filters.command("crestart", [",", "(", ";", "×", ":"]) & filters.user(DEVS)
 )
 @Client.on_message(filters.command("restart", [".", "-", "^", "!", "?"]) & filters.me)
 async def restart_bot(_, message: Message):
