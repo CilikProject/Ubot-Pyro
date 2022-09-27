@@ -45,7 +45,7 @@ async def incomingpm(client: Client, message: Message):
             except BaseException:
                 pass
 
-            PM_LIMIT = gvarstatus("PM_LIMIT") or 5
+            PM_LIMIT = gvarstatus("PM_LIMIT") or 7
             getmsg = gvarstatus("unapproved_msg")
             if getmsg is not None:
                 UNAPPROVED_MSG = getmsg
