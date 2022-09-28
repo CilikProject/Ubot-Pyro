@@ -1,5 +1,5 @@
 # Cilik-PyroBot
-
+import html
 import asyncio
 from os import getenv
 
@@ -168,17 +168,27 @@ async def tag_all_users(client: Client, message: Message):
     if len(message.text.split()) >= 2:
         text = message.text.split(None, 1)[1]
     else:
-        text = message.reply_to_message
+        text = "Hi all 🙃"
     kek = client.get_chat_members(message.chat.id)
     async for a in kek:
         if not a.user.is_bot:
             text += mention_html(a.user.id, "\u200b")
-    asyncio.sleep(1)
+    if message.reply_to_message:
+        tai = await client.send_message(
+              message.chat.id,
+              text,
+              reply_to_message_id=message.reply_to_message.id,
+              parse_mode=enums.ParseMode.HTML,
+              )
+    else:
+        tai = await client.send_message(
+              message.chat.id, text, parse_mode=enums.ParseMode.HTML
+              )
     done = 0
     error = 0
     async for dialog in client.get_dialogs():
         if dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
-            msg = text
+            msg = tai
             chat = dialog.chat.id
             if chat not in GCAST_BLACKLIST and chat not in BLACKLIST_GCAST:
                 try:
