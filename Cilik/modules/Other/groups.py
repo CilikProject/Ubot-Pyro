@@ -159,7 +159,9 @@ async def tag_all_users(client: Client, message: Message):
             parse_mode=enums.ParseMode.HTML,
         )
     else:
-        await client.send_message(message.chat.id, text, parse_mode=enums.ParseMode.HTML)
+        await client.send_message(
+            message.chat.id, text, parse_mode=enums.ParseMode.HTML
+        )
 
 
 @Client.on_message(
