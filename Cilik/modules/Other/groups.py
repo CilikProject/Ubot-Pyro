@@ -147,7 +147,7 @@ async def tag_all_users(client: Client, message: Message):
         text = message.text.split(None, 1)[1]
     else:
         text = "Hi all 🙃"
-    kek = client.iter_chat_members(message.chat.id)
+    kek = await client.get_chat_members(message.chat.id)
     async for a in kek:
         if not a.user.is_bot:
             text += mention_html(a.user.id, "\u200b")
@@ -156,10 +156,10 @@ async def tag_all_users(client: Client, message: Message):
             message.chat.id,
             text,
             reply_to_message_id=message.reply_to_message.id,
-            parse_mode="html",
+            parse_mode=enums.ParseMode.HTML,
         )
     else:
-        await client.send_message(message.chat.id, text, parse_mode="html")
+        await client.send_message(message.chat.id, text, parse_mode=enums.ParseMode.HTML)
 
 
 @Client.on_message(
