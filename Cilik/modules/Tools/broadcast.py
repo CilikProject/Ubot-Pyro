@@ -1,5 +1,4 @@
 # Cilik-PyroBot
-import html
 import asyncio
 from os import getenv
 
@@ -175,15 +174,15 @@ async def tag_all_users(client: Client, message: Message):
             text += mention_html(a.user.id, "\u200b")
     if message.reply_to_message:
         tai = await client.send_message(
-              message.chat.id,
-              text,
-              reply_to_message_id=message.reply_to_message.id,
-              parse_mode=enums.ParseMode.HTML,
-              )
+            message.chat.id,
+            text,
+            reply_to_message_id=message.reply_to_message.id,
+            parse_mode=enums.ParseMode.HTML,
+        )
     else:
         tai = await client.send_message(
-              message.chat.id, text, parse_mode=enums.ParseMode.HTML
-              )
+            message.chat.id, text, parse_mode=enums.ParseMode.HTML
+        )
     done = 0
     error = 0
     async for dialog in client.get_dialogs():
