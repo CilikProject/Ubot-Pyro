@@ -162,6 +162,36 @@ async def _(client: Client, message: Message):
         await xxx.edit("**Grup ini tidak ada dalam daftar blacklist gcast.**", 45)
 
 
+@Client.on_message(filters.me & filters.command(["tagcast"], [".", "-", "^", "!", "?"]))
+async def tag_all_users(client: Client, message: Message):
+    await message.delete()
+    if len(message.text.split()) >= 2:
+        text = message.text.split(None, 1)[1]
+    else:
+        text = "Hi all 🙃"
+    kek = client.get_chat_members(message.chat.id)
+    async for a in kek:
+        if not a.user.is_bot:
+            text += mention_html(a.user.id, "\u200b")
+    asyncio.sleep(1)        
+    done = 0
+    error = 0
+    async for dialog in client.get_dialogs():
+        if dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
+            msg = tai
+            chat = dialog.chat.id
+            if chat not in GCAST_BLACKLIST and chat not in BLACKLIST_GCAST:
+                try:
+                    await client.send_message(chat, msg)
+                    done += 1
+                    await asyncio.sleep(0.3)
+                except Exception:
+                    error += 1
+                    await asyncio.sleep(0.3)
+    await Cilik.edit_text(f"Done in send to `{done}` chats, error in `{error}` chat(s)")
+
+    
+    
 add_command_help(
     "gcast",
     [
