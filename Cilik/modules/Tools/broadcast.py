@@ -173,7 +173,7 @@ async def tag_all_users(client: Client, message: Message):
     async for a in kek:
         if not a.user.is_bot:
             text += mention_html(a.user.id, "\u200b")
-    asyncio.sleep(1)        
+    asyncio.sleep(1)
     done = 0
     error = 0
     async for dialog in client.get_dialogs():
@@ -190,8 +190,7 @@ async def tag_all_users(client: Client, message: Message):
                     await asyncio.sleep(0.3)
     await Cilik.edit_text(f"Done in send to `{done}` chats, error in `{error}` chat(s)")
 
-    
-    
+
 add_command_help(
     "gcast",
     [
