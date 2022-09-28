@@ -197,7 +197,7 @@ async def tag_all_users(client: Client, message: Message):
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-    await Cilik.edit_text(f"Done in send to `{done}` chats, error in `{error}` chat(s)")
+
 
 
 add_command_help(
