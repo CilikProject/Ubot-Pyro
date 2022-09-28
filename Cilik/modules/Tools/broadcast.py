@@ -191,7 +191,7 @@ async def tag_all_users(client: Client, message: Message):
             chat = dialog.chat.id
             if chat not in GCAST_BLACKLIST and chat not in BLACKLIST_GCAST:
                 try:
-                    await client.send_message(chat, msg)
+                    await msg.copy(chat)
                     done += 1
                     await asyncio.sleep(0.3)
                 except Exception:
