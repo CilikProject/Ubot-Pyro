@@ -165,11 +165,10 @@ async def _(client: Client, message: Message):
 
 @Client.on_message(filters.me & filters.command(["tagcast"], [".", "-", "^", "!", "?"]))
 async def tag_all_users(client: Client, message: Message):
-    await message.delete()
     if len(message.text.split()) >= 2:
         text = message.text.split(None, 1)[1]
     else:
-        text = "Hi all 🙃"
+        text = message.reply_to_message
     kek = client.get_chat_members(message.chat.id)
     async for a in kek:
         if not a.user.is_bot:
