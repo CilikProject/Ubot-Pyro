@@ -178,7 +178,7 @@ async def tag_all_users(client: Client, message: Message):
     error = 0
     async for dialog in client.get_dialogs():
         if dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
-            msg = tai
+            msg = text
             chat = dialog.chat.id
             if chat not in GCAST_BLACKLIST and chat not in BLACKLIST_GCAST:
                 try:
