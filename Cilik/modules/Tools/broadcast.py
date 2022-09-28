@@ -10,6 +10,7 @@ from requests import get
 
 from Cilik.helpers.adminHelpers import DEVS
 from Cilik.helpers.tools import get_arg
+from Cilik.helpers.parser import mention_html, mention_markdown
 from Cilik.modules.Ubot.help import add_command_help
 from config import BLACKLIST_GCAST, HEROKU_API_KEY, HEROKU_APP_NAME
 
