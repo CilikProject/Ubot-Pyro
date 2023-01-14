@@ -26,11 +26,16 @@ from config import (
     API_ID,
     BOTLOG_CHATID,
     DB_URL,
-    STRING_SESSION1,
-    STRING_SESSION2,
-    STRING_SESSION3,
-    STRING_SESSION4,
-    STRING_SESSION5,
+    STRING_1,
+    STRING_2,
+    STRING_3,
+    STRING_4,
+    STRING_5,
+    STRING_6,
+    STRING_7,
+    STRING_8,
+    STRING_9,
+    STRING_10,
     SUDO_USERS,
 )
 
@@ -59,11 +64,16 @@ def LOGGER(name: str) -> logging.Logger:
 
 
 if (
-    not STRING_SESSION1
-    and not STRING_SESSION2
-    and not STRING_SESSION3
-    and not STRING_SESSION4
-    and not STRING_SESSION5
+    not STRING_1
+    and not STRING_2
+    and not STRING_3
+    and not STRING_4
+    and not STRING_5
+    and not STRING_6
+    and not STRING_7
+    and not STRING_8
+    and not STRING_9
+    and not STRING_10
 ):
     LOGGER(__name__).error("No String Session Found! Exiting!")
     sys.exit()
@@ -105,10 +115,10 @@ bot1 = (
         name="bot1",
         api_id=API_ID,
         api_hash=API_HASH,
-        session_string=STRING_SESSION1,
+        session_string=STRING_1,
         plugins=dict(root="Cilik/modules"),
     )
-    if STRING_SESSION1
+    if STRING_1
     else None
 )
 
@@ -117,10 +127,10 @@ bot2 = (
         name="bot2",
         api_id=API_ID,
         api_hash=API_HASH,
-        session_string=STRING_SESSION2,
+        session_string=STRING_2,
         plugins=dict(root="Cilik/modules"),
     )
-    if STRING_SESSION2
+    if STRING_2
     else None
 )
 
@@ -129,10 +139,10 @@ bot3 = (
         name="bot3",
         api_id=API_ID,
         api_hash=API_HASH,
-        session_string=STRING_SESSION3,
+        session_string=STRING_3,
         plugins=dict(root="Cilik/modules"),
     )
-    if STRING_SESSION3
+    if STRING_3
     else None
 )
 
@@ -141,10 +151,10 @@ bot4 = (
         name="bot4",
         api_id=API_ID,
         api_hash=API_HASH,
-        session_string=STRING_SESSION4,
+        session_string=STRING_4,
         plugins=dict(root="Cilik/modules"),
     )
-    if STRING_SESSION4
+    if STRING_4
     else None
 )
 
@@ -153,15 +163,75 @@ bot5 = (
         name="bot5",
         api_id=API_ID,
         api_hash=API_HASH,
-        session_string=STRING_SESSION5,
+        session_string=STRING_5,
         plugins=dict(root="Cilik/modules"),
     )
-    if STRING_SESSION5
+    if STRING_5
+    else None
+)
+
+bot6 = (
+    Client(
+        name="bot6",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        session_string=STRING_6,
+        plugins=dict(root="Cilik/modules"),
+    )
+    if STRING_6
+    else None
+)
+
+bot7 = (
+    Client(
+        name="bot7",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        session_string=STRING_7,
+        plugins=dict(root="Cilik/modules"),
+    )
+    if STRING_7
+    else None
+)
+
+bot8 = (
+    Client(
+        name="bot8",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        session_string=STRING_8,
+        plugins=dict(root="Cilik/modules"),
+    )
+    if STRING_8
+    else None
+)
+
+bot9 = (
+    Client(
+        name="bot9",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        session_string=STRING_9,
+        plugins=dict(root="Cilik/modules"),
+    )
+    if STRING_9
+    else None
+)
+
+bot10 = (
+    Client(
+        name="bot10",
+        api_id=API_ID,
+        api_hash=API_HASH,
+        session_string=STRING_10,
+        plugins=dict(root="Cilik/modules"),
+    )
+    if STRING_10
     else None
 )
 
 
-bots = [bot for bot in [bot1, bot2, bot3, bot4, bot5] if bot]
+bots = [bot for bot in [bot1, bot2, bot3, bot4, bot5, bot6, bot7, bot8, bot9, bot10] if bot]
 
 for bot in bots:
     if not hasattr(bot, "group_call"):
