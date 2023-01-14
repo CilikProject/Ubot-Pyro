@@ -16,9 +16,9 @@ from Cilik.helpers.misc import create_botlog, git, heroku
 from config import BOT_VER
 
 MSG_ON = """
-✅ **Cilik-Ubot Activated.**
+✅ **Ubot Activated.**
 **🏷️ Userbot Version -** `{}`
-**Ketik** `.cilik` **untuk Mengecheck Bot**
+**Ketik** `.ping` **untuk Mengecheck Bot**
 """
 
 
@@ -35,7 +35,7 @@ async def main():
             LOGGER("Cilik").info(f"Logged in as {bot.me.first_name} | [ {bot.me.id} ]")
         except Exception as a:
             LOGGER("main").warning(a)
-    LOGGER("Cilik").info(f"Cilik-Ubot v{BOT_VER} ⚙️[⚡ Activated ⚡]")
+    LOGGER("Cilik").info(f"Ubot v{BOT_VER} ⚙️[⚡ Activated ⚡]")
     if bot1 and not str(BOTLOG_CHATID).startswith("-100"):
         await create_botlog(bot1)
     await idle()
