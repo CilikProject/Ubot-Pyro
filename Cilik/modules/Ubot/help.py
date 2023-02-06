@@ -32,7 +32,7 @@ async def module_help(client: Client, message: Message):
             ac.add_row([x[0], x[1] if len(x) >= 2 else None])
 
         text = "𝗨𝗯𝗼𝘁 𝗠𝗼𝗱𝘂𝗹𝗲𝘀 \n\n"
-        text += "🔮 𝗨𝗯𝗼𝘁: -⋟ `alive` -⋟ `gcast` -⋟ `heroku` -⋟ `logs` -⋟ `spam` -⋟ `system` -⋟ `update` \n\n\n"
+        text += "🔮 𝗨𝗯𝗼𝘁: -⋟ `alive` -⋟ `gcast` -⋟ `heroku` -⋟ `logs` -⋟ `spam` -⋟ `system` \n\n\n"
         text += "📮 𝗣𝗿𝗲𝗳𝗶𝘅 -⋟ `[. - ^ ! ?]`\n"
         text += "     `.help [module_name]`\n"
 
