@@ -38,8 +38,6 @@ async def main():
         except Exception as a:
             LOGGER("main").warning(a)
     LOGGER("Near").info(f"Ubot v{BOT_VER} ⚙️[⚡ Activated ⚡]")
-    if bot1 and not str(BOTLOG_CHATID).startswith("-100"):
-        await create_botlog(bot1)
     await idle()
     await aiosession.close()
 
